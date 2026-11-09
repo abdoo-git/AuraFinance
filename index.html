@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AuraFinance — Master Your Wealth & Expenses</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0a0e17;
+      --bg-card: rgba(18, 25, 41, 0.7);
+      --bg-card-hover: rgba(28, 38, 62, 0.8);
+      --primary: #10b981;
+      --primary-glow: rgba(16, 185, 129, 0.25);
+      --accent-gold: #f59e0b;
+      --accent-gold-glow: rgba(245, 158, 11, 0.3);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: rgba(255, 255, 255, 0.08);
+      --radius-lg: 20px;
+      --radius-md: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 85% 30%, rgba(245, 158, 11, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 50% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 50%);
+      background-attachment: fixed;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1, h2, h3, h4, .brand-font {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+
+    /* Navbar */
+    header {
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 14, 23, 0.75);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary), #3b82f6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      border: none;
+      outline: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      box-shadow: 0 4px 20px var(--primary-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(16, 185, 129, 0.4);
+    }
+
+    .btn-excel {
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--primary);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-excel:hover {
+      background: rgba(16, 185, 129, 0.22);
+      transform: translateY(-2px);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #0f172a;
+      font-weight: 700;
+      box-shadow: 0 4px 20px var(--accent-gold-glow);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(245, 158, 11, 0.45);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 90px 0 60px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-type-container {
+      color: var(--primary);
+      min-height: 4.2rem;
+      display: inline-block;
+    }
+
+    .typing-text {
+      border-right: 3px solid var(--primary);
+      animation: blink 0.75s step-end infinite;
+      padding-right: 4px;
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent; }
+      50% { border-color: var(--primary); }
+    }
+
+    .hero p {
+      max-width: 640px;
+      margin: 0 auto 36px;
+      color: var(--text-muted);
+      font-size: 1.15rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    /* Metrics Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.18);
+      background: var(--bg-card-hover);
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--text-main);
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .stat-trend {
+      font-size: 0.8rem;
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .trend-up { color: #10b981; }
+    .trend-down { color: #ef4444; }
+
+    /* Dashboard Layout */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 28px;
+      margin-bottom: 70px;
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .transactions-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .transactions-table th {
+      padding: 12px 14px;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .transactions-table td {
+      padding: 16px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      font-size: 0.95rem;
+    }
+
+    .transaction-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 12px;
+      vertical-align: middle;
+    }
+
+    .badge-category {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    /* Budget Progress Bars */
+    .budget-item {
+      margin-bottom: 20px;
+    }
+
+    .budget-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+
+    .progress-bar-bg {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: 99px;
+    }
+
+    /* Modal / Popup */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(4, 7, 13, 0.8);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.35s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: linear-gradient(145deg, #141c2e, #0e1524);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 35px var(--accent-gold-glow);
+      border-radius: 24px;
+      width: 90%;
+      max-width: 520px;
+      padding: 36px;
+      position: relative;
+      transform: scale(0.92);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      text-align: center;
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: scale(1);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      border: none;
+      color: var(--text-muted);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s;
+    }
+
+    .modal-close-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    .gold-icon-large {
+      width: 72px;
+      height: 72px;
+      background: linear-gradient(135deg, #f59e0b, #b45309);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 0 30px var(--accent-gold-glow);
+    }
+
+    .modal-content h3 {
+      font-size: 1.75rem;
+      margin-bottom: 12px;
+      color: #fbbf24;
+    }
+
+    .modal-content p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      margin-bottom: 28px;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: auto;
+      border-top: 1px solid var(--border);
+      padding: 40px 0 30px;
+      background: rgba(10, 14, 23, 0.9);
+      text-align: center;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .footer-love {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 0.02em;
+    }
+
+    .footer-heart {
+      color: #ef4444;
+      display: inline-block;
+      animation: heartbeat 1.4s infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.22); }
+    }
+
+    .footer-sub {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .dashboard-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">
+          <div class="logo-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <span>Aura<span style="color: var(--primary);">Finance</span></span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#expenses">Expenses</a></li>
+          <li><a href="#analytics">Analytics</a></li>
+          <li><a href="#investments">Gold & Assets</a></li>
+        </ul>
+        <div style="display: flex; gap: 12px;">
+          <button class="btn btn-gold" onclick="openModal()">Gold Advisory</button>
+          <button class="btn btn-primary">Get Started</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="container">
+    <section class="hero" id="overview">
+      <div class="badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+        Next-Generation Expense Intelligence
+      </div>
+      <h1>
+        Take Full Control Of Your Money<br>
+        <div class="hero-type-container">
+          <span id="typewriter" class="typing-text"></span>
+        </div>
+      </h1>
+      <p>
+        Effortlessly track every dollar, cut unnecessary expenses, and securely diversify into high-value assets with our intelligent financial management dashboard.
+      </p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="openModal()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          Explore Asset Strategies
+        </button>
+        <button class="btn btn-excel" onclick="exportToExcel()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Export to Excel (.xlsx)
+        </button>
+      </div>
+    </section>
+
+    <!-- Quick Stats Metric Cards -->
+    <section class="stats-grid">
+      <div class="card">
+        <div class="stat-label">Total Portfolio Net Worth</div>
+        <div class="stat-value">$142,850.00</div>
+        <div class="stat-trend trend-up">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
+          +8.4% vs last month
+        </div>
+      </div>
+      <div class="card">
+        <div class="stat-label">Monthly Expenses</div>
+        <div class="stat-value">$3,240.80</div>
+        <div class="stat-trend trend-down">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          -4.2% under budget
+        </div>
+      </div>
+      <div class="card">
+        <div class="stat-label">Safe Savings Rate</div>
+        <div class="stat-value">38.5%</div>
+        <div class="stat-trend trend-up">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
+          Optimal financial safety
+        </div>
+      </div>
+      <div class="card">
+        <div class="stat-label">Gold Holdings Value</div>
+        <div class="stat-value" style="color: #fbbf24;">$28,450.00</div>
+        <div class="stat-trend trend-up" style="color: #fbbf24;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
+          +14.8% annual return
+        </div>
+      </div>
+    </section>
+
+    <!-- Management Dashboard Grid -->
+    <section class="dashboard-grid" id="expenses">
+      <!-- Recent Transactions Table -->
+      <div class="card">
+        <div class="dashboard-header">
+          <div>
+            <h3>Recent Financial Transactions</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem;">Real-time synchronized transactions</p>
+          </div>
+          <button class="btn btn-excel" style="padding: 8px 16px; font-size: 0.85rem;" onclick="exportToExcel()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Export to Excel
+          </button>
+        </div>
+
+        <table class="transactions-table">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Category</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span class="transaction-icon">📈</span>
+                <strong>Bullion Vault Deposit</strong>
+              </td>
+              <td><span class="badge-category" style="color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3);">Gold Asset</span></td>
+              <td style="color: var(--text-muted);">Today, 2:15 PM</td>
+              <td style="color: #10b981; font-weight: 600;">+$2,500.00</td>
+              <td><span style="color: #10b981; font-size: 0.85rem;">● Completed</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span class="transaction-icon">🏢</span>
+                <strong>Office & Workspace Lease</strong>
+              </td>
+              <td><span class="badge-category">Housing</span></td>
+              <td style="color: var(--text-muted);">Yesterday</td>
+              <td style="color: #f8fafc; font-weight: 600;">-$1,450.00</td>
+              <td><span style="color: #10b981; font-size: 0.85rem;">● Completed</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span class="transaction-icon">⚡</span>
+                <strong>Cloud Server Infrastructure</strong>
+              </td>
+              <td><span class="badge-category">Business Utilities</span></td>
+              <td style="color: var(--text-muted);">Nov 07, 2026</td>
+              <td style="color: #f8fafc; font-weight: 600;">-$340.20</td>
+              <td><span style="color: #10b981; font-size: 0.85rem;">● Completed</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span class="transaction-icon">💼</span>
+                <strong>Consulting Retainer Income</strong>
+              </td>
+              <td><span class="badge-category" style="color: #10b981;">Revenue</span></td>
+              <td style="color: var(--text-muted);">Nov 05, 2026</td>
+              <td style="color: #10b981; font-weight: 600;">+$6,200.00</td>
+              <td><span style="color: #10b981; font-size: 0.85rem;">● Completed</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span class="transaction-icon">🛒</span>
+                <strong>Household & Supplies</strong>
+              </td>
+              <td><span class="badge-category">Essentials</span></td>
+              <td style="color: var(--text-muted);">Nov 04, 2026</td>
+              <td style="color: #f8fafc; font-weight: 600;">-$185.50</td>
+              <td><span style="color: #10b981; font-size: 0.85rem;">● Completed</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Expense Categories & Budget Overview -->
+      <div class="card" id="analytics">
+        <div class="dashboard-header">
+          <div>
+            <h3>Monthly Budget Targets</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem;">Expense distribution</p>
+          </div>
+        </div>
+
+        <div class="budget-item">
+          <div class="budget-info">
+            <span>Essential Living</span>
+            <span style="font-weight: 600;">$1,635 / $2,000 (81%)</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" style="width: 81%; background: #3b82f6;"></div>
+          </div>
+        </div>
+
+        <div class="budget-item">
+          <div class="budget-info">
+            <span>Discretionary & Dining</span>
+            <span style="font-weight: 600;">$420 / $800 (52%)</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" style="width: 52%; background: #10b981;"></div>
+          </div>
+        </div>
+
+        <div class="budget-item">
+          <div class="budget-info">
+            <span>Asset Investments & Gold</span>
+            <span style="font-weight: 600;">$1,185 / $1,200 (98%)</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" style="width: 98%; background: #f59e0b;"></div>
+          </div>
+        </div>
+
+        <div class="budget-item">
+          <div class="budget-info">
+            <span>Tech Subscriptions</span>
+            <span style="font-weight: 600;">$210 / $300 (70%)</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" style="width: 70%; background: #ec4899;"></div>
+          </div>
+        </div>
+
+        <div style="background: rgba(245, 158, 11, 0.08); border: 1px dashed rgba(245, 158, 11, 0.3); border-radius: 12px; padding: 16px; margin-top: 28px; text-align: center;">
+          <div style="color: #fbbf24; font-weight: 700; font-size: 0.95rem; margin-bottom: 4px;">Hedging Inflation Alert</div>
+          <div style="color: var(--text-muted); font-size: 0.82rem; margin-bottom: 12px;">Physical gold allocation protects purchasing power during market volatility.</div>
+          <button class="btn btn-gold" style="padding: 6px 16px; font-size: 0.82rem; width: 100%;" onclick="openModal()">View Gold Recommendation</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Popup / Modal: Invest Your Money In Gold -->
+  <div class="modal-overlay" id="goldModal">
+    <div class="modal-content">
+      <button class="modal-close-btn" onclick="closeModal()">✕</button>
+      <div class="gold-icon-large">
+        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+        </svg>
+      </div>
+      <h3>Invest Your Money In Gold</h3>
+      <p>
+        Protect your family's financial freedom against currency debasement. Allocate 10%–20% of your excess capital to certified bullion with verified insured custody.
+      </p>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <button class="btn btn-gold" onclick="alert('Proceeding to Gold Investment Portal... Secure vault allocation initialized.')">
+          Start Investing in Gold Now
+        </button>
+        <button class="btn btn-excel" onclick="exportToExcel(); closeModal();">
+          Export Your Finance & Transactions to Excel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toast" style="position: fixed; bottom: 28px; right: 28px; background: #10b981; color: white; padding: 14px 22px; border-radius: 10px; font-weight: 600; box-shadow: 0 10px 30px rgba(0,0,0,0.5); opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 2000;">
+    📊 Finance and transactions exported to Excel!
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <div class="footer-love">
+        made with love to manage your money <span class="footer-heart">❤️</span>
+      </div>
+      <div class="footer-sub">
+        © 2026 AuraFinance Systems. Clean expense tracking, wealth allocation, and Excel financial exports.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 1. Dynamic Typing Effect
+    const phrases = [
+      "and optimize every daily expense.",
+      "with automated financial reports.",
+      "and build generational wealth in gold.",
+      "with full clarity on your future."
+    ];
+
+    let currentPhraseIndex = 0;
+    let currentCharIndex = 0;
+    let isDeleting = false;
+    const typeSpeed = 80;
+    const eraseSpeed = 40;
+    const delayBetween = 1800;
+    const typewriterElement = document.getElementById("typewriter");
+
+    function typeEffect() {
+      const currentPhrase = phrases[currentPhraseIndex];
+
+      if (isDeleting) {
+        typewriterElement.textContent = currentPhrase.substring(0, currentCharIndex - 1);
+        currentCharIndex--;
+      } else {
+        typewriterElement.textContent = currentPhrase.substring(0, currentCharIndex + 1);
+        currentCharIndex++;
+      }
+
+      if (!isDeleting && currentCharIndex === currentPhrase.length) {
+        isDeleting = true;
+        setTimeout(typeEffect, delayBetween);
+      } else if (isDeleting && currentCharIndex === 0) {
+        isDeleting = false;
+        currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+        setTimeout(typeEffect, 400);
+      } else {
+        setTimeout(typeEffect, isDeleting ? eraseSpeed : typeSpeed);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      typeEffect();
+      // Auto display modal popup after 2 seconds to showcase feature
+      setTimeout(openModal, 1500);
+    });
+
+    // 2. Modal Functions
+    const modal = document.getElementById("goldModal");
+    function openModal() {
+      modal.classList.add("active");
+    }
+    function closeModal() {
+      modal.classList.remove("active");
+    }
+    window.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // 3. Export to Excel Simulation & CSV generator
+    function exportToExcel() {
+      const rows = [
+        ["Date", "Description", "Category", "Amount", "Status"],
+        ["2026-11-09", "Bullion Vault Deposit", "Gold Asset", "+$2500.00", "Completed"],
+        ["2026-11-08", "Office & Workspace Lease", "Housing", "-$1450.00", "Completed"],
+        ["2026-11-07", "Cloud Server Infrastructure", "Business Utilities", "-$340.20", "Completed"],
+        ["2026-11-05", "Consulting Retainer Income", "Revenue", "+$6200.00", "Completed"],
+        ["2026-11-04", "Household & Supplies", "Essentials", "-$185.50", "Completed"]
+      ];
+
+      const csvContent = "data:text/csv;charset=utf-8," + rows.map(e => e.join(",")).join("\n");
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "AuraFinance_Transactions_Export.csv");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Show toast
+      const toast = document.getElementById("toast");
+      toast.style.opacity = "1";
+      setTimeout(() => { toast.style.opacity = "0"; }, 3500);
+    }
+  </script>
+</body>
+</html>
