@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AuraFinance | Build your financial future</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink:#f4f7fb; --muted:#91a1b7; --bg:#08121f; --surface:#101e30; --line:rgba(166,192,220,.16); --mint:#53e0ad; --violet:#8e83ff; --orange:#ffbd69; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { background:var(--bg); color:var(--ink); font-family:'DM Sans',sans-serif; line-height:1.5; }
+    body:before { background:radial-gradient(circle, rgba(83,224,173,.14), transparent 65%); content:""; height:600px; left:-240px; pointer-events:none; position:fixed; top:-230px; width:600px; }
+    .container { margin:auto; max-width:1160px; padding:0 24px; }
+    header { background:rgba(8,18,31,.82); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:2; backdrop-filter:blur(16px); }
+    nav { align-items:center; display:flex; height:78px; justify-content:space-between; }
+    .logo { align-items:center; color:var(--ink); display:flex; font-family:'Space Grotesk'; font-size:1.35rem; font-weight:700; gap:10px; text-decoration:none; }
+    .logo-mark { align-items:center; background:linear-gradient(135deg,var(--mint),var(--violet)); border-radius:10px; color:#08121f; display:flex; font-size:1.4rem; height:36px; justify-content:center; width:36px; }
+    .logo em { color:var(--mint); font-style:normal; }
+    .nav-links { display:flex; gap:30px; list-style:none; } .nav-links a { color:var(--muted); font-size:.9rem; text-decoration:none; } .nav-links a:hover { color:var(--mint); }
+    .button { background:var(--mint); border:0; border-radius:9px; color:#062017; cursor:pointer; font-weight:700; padding:11px 19px; }
+    .hero { padding:90px 0 65px; text-align:center; }
+    .eyebrow { color:var(--mint); font-size:.78rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
+    h1 { font-family:'Space Grotesk'; font-size:clamp(2.8rem,6vw,5.3rem); letter-spacing:-.05em; line-height:1.05; margin:18px auto 22px; max-width:850px; }
+    .gradient-text { background:linear-gradient(100deg,var(--mint),#7fcbff 55%,var(--violet)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .typing { border-right:3px solid var(--mint); padding-right:7px; } .typing.done { animation:blink .8s step-end infinite; }
+    @keyframes blink { 50% { border-color:transparent; } }
+    .hero-copy { color:var(--muted); font-size:1.08rem; margin:auto; max-width:620px; }
+    .hero-actions { display:flex; gap:12px; justify-content:center; margin-top:31px; } .button.outline { background:transparent; border:1px solid var(--line); color:var(--ink); }
+    .stats { display:grid; gap:16px; grid-template-columns:repeat(4,1fr); margin-bottom:25px; }
+    .card { background:linear-gradient(145deg,rgba(18,34,53,.9),rgba(12,25,41,.9)); border:1px solid var(--line); border-radius:16px; padding:23px; }
+    .card:hover { border-color:rgba(83,224,173,.38); transform:translateY(-3px); transition:.25s ease; }
+    .stat-label { color:var(--muted); font-size:.82rem; } .stat-value { font-family:'Space Grotesk'; font-size:1.65rem; margin:8px 0 5px; } .trend { color:var(--mint); font-size:.78rem; }
+    .dashboard { display:grid; gap:18px; grid-template-columns:1.2fr .8fr; margin-bottom:68px; } .card-header { align-items:start; display:flex; justify-content:space-between; margin-bottom:20px; } h2,h3 { font-family:'Space Grotesk'; } h3 { font-size:1.02rem; } .card-header p { color:var(--muted); font-size:.8rem; margin-top:3px; } .card-header span { color:var(--mint); font-size:.78rem; }
+    table { border-collapse:collapse; width:100%; } th { color:var(--muted); font-size:.7rem; letter-spacing:.08em; padding:0 8px 11px; text-align:left; text-transform:uppercase; } td { border-top:1px solid var(--line); font-size:.84rem; padding:14px 8px; } td:nth-child(2) { color:var(--muted); } td:last-child { color:var(--mint); text-align:right; }
+    .budget { margin:22px 0; } .budget-line { display:flex; font-size:.83rem; justify-content:space-between; margin-bottom:9px; } .budget-line span:last-child { color:var(--muted); } .track { background:rgba(255,255,255,.09); border-radius:99px; height:8px; overflow:hidden; } .fill { background:linear-gradient(90deg,var(--violet),var(--mint)); border-radius:inherit; height:100%; }
+    .insight { background:rgba(255,189,105,.08); border:1px solid rgba(255,189,105,.25); border-radius:12px; color:var(--orange); font-size:.82rem; margin-top:26px; padding:14px; }
+    footer { border-top:1px solid var(--line); color:var(--muted); padding:28px 0; text-align:center; } .version-nav { font-size:.76rem; margin-top:7px; } .version-nav a { color:var(--mint); margin:0 5px; }
+    @media (max-width:800px) { .nav-links { display:none; } .stats { grid-template-columns:repeat(2,1fr); } .dashboard { grid-template-columns:1fr; } }
+    @media (max-width:500px) { .container { padding:0 16px; } .hero { padding-top:65px; } .stats { grid-template-columns:1fr; } .hero-actions { flex-direction:column; } .hero-actions .button { width:100%; } th:nth-child(2),td:nth-child(2) { display:none; } }
+  </style>
+</head>
+<body>
+  <header><div class="container"><nav><a class="logo" href="#"><span class="logo-mark">$</span>Aura<em>Finance</em></a><ul class="nav-links"><li><a href="#overview">Overview</a></li><li><a href="#expenses">Expenses</a></li><li><a href="#goals">Goals</a></li></ul><button class="button">Open dashboard</button></nav></div></header>
+  <main>
+    <section class="hero" id="overview"><div class="container"><div class="eyebrow">A smarter financial rhythm</div><h1>Feel confident about <span class="gradient-text typing" id="typing"></span></h1><p class="hero-copy">See the full story behind your spending, keep your goals visible, and make better decisions with a dashboard designed around you.</p><div class="hero-actions"><button class="button">Explore your money</button><button class="button outline">See monthly report</button></div></div></section>
+    <section class="container" id="expenses">
+      <div class="stats">
+        <div class="card"><div class="stat-label">Total balance</div><div class="stat-value">$24,680.40</div><div class="trend">↗ 12.8% this month</div></div>
+        <div class="card"><div class="stat-label">Monthly income</div><div class="stat-value">$6,240.00</div><div class="trend">↗ 4.5% this month</div></div>
+        <div class="card"><div class="stat-label">Monthly expenses</div><div class="stat-value">$3,240.80</div><div class="trend">↘ 8.2% under budget</div></div>
+        <div class="card"><div class="stat-label">Savings progress</div><div class="stat-value">68.0%</div><div class="trend">On track for July</div></div>
+      </div>
+      <div class="dashboard">
+        <div class="card"><div class="card-header"><div><h3>Recent transactions</h3><p>Synced just now</p></div><span>May 2026</span></div><table><thead><tr><th>Description</th><th>Category</th><th>Amount</th></tr></thead><tbody><tr><td>Monthly salary</td><td>Income</td><td>+$6,240.00</td></tr><tr><td>Apartment rent</td><td>Housing</td><td>-$1,450.00</td></tr><tr><td>Grocery market</td><td>Essentials</td><td>-$185.50</td></tr><tr><td>Electricity bill</td><td>Utilities</td><td>-$92.40</td></tr></tbody></table></div>
+        <div class="card" id="goals"><div class="card-header"><div><h3>Spending plans</h3><p>Stay ahead of your limits</p></div><span>Monthly</span></div><div class="budget"><div class="budget-line"><span>Essentials</span><span>$1,635 / $2,000</span></div><div class="track"><div class="fill" style="width:82%"></div></div></div><div class="budget"><div class="budget-line"><span>Dining & leisure</span><span>$420 / $800</span></div><div class="track"><div class="fill" style="width:52%"></div></div></div><div class="budget"><div class="budget-line"><span>Subscriptions</span><span>$210 / $300</span></div><div class="track"><div class="fill" style="width:70%"></div></div></div><div class="insight">You are spending 8.2% less than last month. Keep the momentum going.</div></div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="container">AuraFinance · Designed for your next smart money move<div class="version-nav">Versions: <a href="version-1.html">Step 1</a> · <a href="version-2.html">Step 2</a> · <a href="index.html">Final</a></div></div></footer>
+  <script>
+    const phrases = ['your daily spending', 'your next big goal', 'a stronger future'];
+    const target = document.getElementById('typing');
+    let phraseIndex = 0;
+    let characterIndex = 0;
+    let deleting = false;
+
+    function typePhrase() {
+      const phrase = phrases[phraseIndex];
+      target.textContent = phrase.slice(0, characterIndex);
+      target.classList.add('done');
+      if (!deleting && characterIndex < phrase.length) {
+        characterIndex += 1;
+        setTimeout(typePhrase, 75);
+      } else if (!deleting && characterIndex === phrase.length) {
+        deleting = true;
+        setTimeout(typePhrase, 1500);
+      } else if (deleting && characterIndex > 0) {
+        characterIndex -= 1;
+        setTimeout(typePhrase, 42);
+      } else {
+        deleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        setTimeout(typePhrase, 300);
+      }
+    }
+    typePhrase();
+  </script>
+</body>
+</html>
