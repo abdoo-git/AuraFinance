@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AuraFinance | Your money, made clearer</title>
+  <style>
+    :root {
+      --navy: #18324b;
+      --blue: #2e6f9e;
+      --blue-soft: #eaf3f8;
+      --ink: #1d2b36;
+      --muted: #71808c;
+      --line: #e3eaee;
+      --surface: #ffffff;
+      --background: #f5f8fa;
+      --green: #2f9d72;
+      --red: #c85c5c;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--background);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+    }
+    .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+    }
+    nav {
+      align-items: center;
+      display: flex;
+      height: 76px;
+      justify-content: space-between;
+    }
+    .logo {
+      align-items: center;
+      color: var(--navy);
+      display: flex;
+      font-size: 1.35rem;
+      font-weight: 700;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo-mark {
+      align-items: center;
+      background: var(--blue);
+      border-radius: 9px;
+      color: white;
+      display: flex;
+      font-size: 1.4rem;
+      height: 36px;
+      justify-content: center;
+      width: 36px;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: var(--muted); font-size: .9rem; text-decoration: none; }
+    .nav-links a:hover { color: var(--blue); }
+    .button {
+      background: var(--navy);
+      border: 0;
+      border-radius: 7px;
+      color: white;
+      cursor: pointer;
+      font-size: .88rem;
+      font-weight: 700;
+      padding: 11px 18px;
+    }
+    .hero { padding: 68px 0 46px; }
+    .hero-grid { align-items: center; display: grid; gap: 50px; grid-template-columns: 1.1fr .9fr; }
+    .eyebrow {
+      color: var(--blue);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    h1 { color: var(--navy); font-size: clamp(2.4rem, 5vw, 4.1rem); line-height: 1.08; margin: 14px 0 20px; }
+    .hero-copy { color: var(--muted); font-size: 1.08rem; max-width: 520px; }
+    .hero-actions { display: flex; gap: 12px; margin-top: 28px; }
+    .button.secondary { background: white; border: 1px solid var(--line); color: var(--navy); }
+    .hero-visual {
+      background: var(--navy);
+      border-radius: 18px;
+      box-shadow: 0 16px 35px rgba(24, 50, 75, .12);
+      color: white;
+      padding: 28px;
+    }
+    .visual-top { align-items: start; display: flex; justify-content: space-between; }
+    .visual-label { color: #b7c8d6; font-size: .82rem; }
+    .visual-total { font-size: 2rem; font-weight: 700; margin: 7px 0 22px; }
+    .chart { align-items: end; display: flex; gap: 10px; height: 100px; }
+    .bar { background: #79b4d3; border-radius: 4px 4px 0 0; flex: 1; }
+    .bar:nth-child(1) { height: 42%; } .bar:nth-child(2) { height: 62%; }
+    .bar:nth-child(3) { height: 49%; } .bar:nth-child(4) { height: 76%; }
+    .bar:nth-child(5) { height: 68%; } .bar:nth-child(6) { background: #76c29e; height: 91%; }
+    .section-heading { align-items: end; display: flex; justify-content: space-between; margin-bottom: 16px; }
+    h2 { color: var(--navy); font-size: 1.45rem; }
+    .section-heading p { color: var(--muted); font-size: .9rem; }
+    .stats { display: grid; gap: 16px; grid-template-columns: repeat(4, 1fr); margin-bottom: 42px; }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 21px; }
+    .stat-label { color: var(--muted); font-size: .82rem; }
+    .stat-value { color: var(--navy); font-size: 1.55rem; font-weight: 700; margin: 8px 0 4px; }
+    .positive { color: var(--green); font-size: .78rem; } .negative { color: var(--red); font-size: .78rem; }
+    .dashboard { display: grid; gap: 18px; grid-template-columns: 1.25fr .75fr; margin-bottom: 62px; }
+    .card-header { align-items: center; display: flex; justify-content: space-between; margin-bottom: 18px; }
+    .card-header h3 { color: var(--navy); font-size: 1rem; }
+    .card-header span { color: var(--muted); font-size: .78rem; }
+    table { border-collapse: collapse; width: 100%; }
+    th { color: var(--muted); font-size: .72rem; font-weight: 700; padding: 0 8px 11px; text-align: left; text-transform: uppercase; }
+    td { border-top: 1px solid var(--line); font-size: .84rem; padding: 13px 8px; }
+    td:last-child { color: var(--navy); font-weight: 700; text-align: right; }
+    .budget { margin: 21px 0; }
+    .budget-line { display: flex; font-size: .84rem; justify-content: space-between; margin-bottom: 8px; }
+    .budget-line span:last-child { color: var(--muted); }
+    .track { background: #edf1f3; border-radius: 99px; height: 8px; overflow: hidden; }
+    .fill { background: var(--blue); border-radius: inherit; height: 100%; }
+    footer { border-top: 1px solid var(--line); color: var(--muted); padding: 25px 0; text-align: center; }
+    .version-nav { color: var(--muted); font-size: .76rem; margin-top: 7px; }
+    .version-nav a { color: var(--blue); margin: 0 5px; }
+    @media (max-width: 800px) {
+      .nav-links { display: none; } .hero-grid, .dashboard { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 500px) {
+      .container { width: min(100% - 28px, 1120px); } .hero { padding-top: 45px; }
+      .stats { grid-template-columns: 1fr; } .hero-actions { flex-direction: column; }
+      .hero-actions .button { width: 100%; } .card { padding: 16px; }
+      th:nth-child(2), td:nth-child(2) { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a class="logo" href="#"><span class="logo-mark">$</span>AuraFinance</a>
+        <ul class="nav-links">
+          <li><a href="#overview">Overview</a></li><li><a href="#expenses">Expenses</a></li><li><a href="#budgets">Budgets</a></li>
+        </ul>
+        <button class="button">View account</button>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero" id="overview">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">A clearer financial picture</div>
+          <h1>Make every dollar work harder.</h1>
+          <p class="hero-copy">AuraFinance gives you a simple place to understand your money, plan your spending, and build healthier financial habits.</p>
+          <div class="hero-actions"><button class="button">Review my finances</button><button class="button secondary">Learn more</button></div>
+        </div>
+        <div class="hero-visual">
+          <div class="visual-top"><div><div class="visual-label">Available balance</div><div class="visual-total">$24,680.40</div></div><span>↗ 12.8%</span></div>
+          <div class="chart"><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+        </div>
+      </div>
+    </section>
+    <section class="container" id="expenses">
+      <div class="section-heading"><div><h2>Your financial overview</h2><p>A quick look at this month</p></div></div>
+      <div class="stats">
+        <div class="card"><div class="stat-label">Total balance</div><div class="stat-value">$24,680</div><div class="positive">↑ 12.8% this month</div></div>
+        <div class="card"><div class="stat-label">Monthly income</div><div class="stat-value">$6,240</div><div class="positive">↑ 4.5% this month</div></div>
+        <div class="card"><div class="stat-label">Total expenses</div><div class="stat-value">$3,240</div><div class="negative">↓ 8.2% under budget</div></div>
+        <div class="card"><div class="stat-label">Savings goal</div><div class="stat-value">68%</div><div class="positive">On track for July</div></div>
+      </div>
+      <div class="dashboard">
+        <div class="card">
+          <div class="card-header"><h3>Recent transactions</h3><span>May 2026</span></div>
+          <table><thead><tr><th>Description</th><th>Category</th><th>Amount</th></tr></thead><tbody>
+            <tr><td>Monthly salary</td><td>Income</td><td>+$6,240.00</td></tr>
+            <tr><td>Apartment rent</td><td>Housing</td><td>-$1,450.00</td></tr>
+            <tr><td>Grocery market</td><td>Essentials</td><td>-$185.50</td></tr>
+            <tr><td>Electricity bill</td><td>Utilities</td><td>-$92.40</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card" id="budgets">
+          <div class="card-header"><h3>Monthly budgets</h3><span>May</span></div>
+          <div class="budget"><div class="budget-line"><span>Essentials</span><span>$1,635 / $2,000</span></div><div class="track"><div class="fill" style="width:82%"></div></div></div>
+          <div class="budget"><div class="budget-line"><span>Dining & leisure</span><span>$420 / $800</span></div><div class="track"><div class="fill" style="width:52%"></div></div></div>
+          <div class="budget"><div class="budget-line"><span>Subscriptions</span><span>$210 / $300</span></div><div class="track"><div class="fill" style="width:70%"></div></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="container">AuraFinance · A simpler way to manage your money<div class="version-nav">Versions: <a href="version-1.html">Step 1</a> · <a href="version-2.html">Step 2</a> · <a href="index.html">Final</a></div></div></footer>
+</body>
+</html>
